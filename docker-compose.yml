@@ -1,0 +1,14 @@
+
+services:
+  hexo:
+    build: .
+    volumes:
+      - .:/app  # 将当前目录挂载到容器的 /app 目录，以便持久化代码和博客内容
+      - /app/node_modules  # 使用匿名卷来存储 /app/node_modules
+
+    # command: tail -f /dev/null  # 使用 tail 命令持续占用容器进程，保持容器运行
+    command: sh -c "yarn server"
+
+    ports:
+      - "4000:4000"  # 将容器的 4000 端口映射到宿主机的 4000 端口，用于访问 Hexo 博客
+
