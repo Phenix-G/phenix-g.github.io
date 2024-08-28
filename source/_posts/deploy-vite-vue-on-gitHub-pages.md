@@ -132,6 +132,8 @@ It will take your latest /dist folder push it into the gh-pages branch!
 
 ![Commit log](https://raw.githubusercontent.com/Phenix-G/image-hosting/main/2024-08-12-18-37-12.png)
 
+![GitHub branch](https://raw.githubusercontent.com/Phenix-G/image-hosting/main/2024-08-12-18-24-02.png)
+
 ![GitHub gh-pages branch](https://raw.githubusercontent.com/Phenix-G/image-hosting/main/2024-08-12-18-25-07.png)
 
 ## Step 8: Check Your Website
