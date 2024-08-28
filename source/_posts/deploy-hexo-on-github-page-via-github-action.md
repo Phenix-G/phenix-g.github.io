@@ -33,29 +33,18 @@ git remote add origin <REMOTE_URL>
 git remote -v
 ```
 
-## Step 3: Generate GitHub PTA and Configure
+## Step 3: Configure GitHub Actions Workflow
 
-1. To automate the deployment, we must generate a [GitHub Personal Access Token](https://github.com/settings/tokens).
-
-![Generate Personal Access Token](https://raw.githubusercontent.com/Phenix-G/image-hosting/main/2024-08-14-01-11-50.png)
-
-2. Now, going back to your GitHub Repository `Settings` -> `Secrets and variables` -> `Actions`, click the `New repository secret` buttom, and add a named `TOKEN`.
-
-![Settings Secret](https://raw.githubusercontent.com/Phenix-G/image-hosting/main/2024-08-28-17-53-34.png)
-
-![Add Token](https://raw.githubusercontent.com/Phenix-G/image-hosting/main/2024-08-28-17-55-11.png)
-
-3. Then go to the `Pages`, click `Deploy from a branch` buttom and select `GitHub Actions`
+1. To automate the deployment, we need to go to your GitHub Repository, click the `Settings` tab and click the `Pages` in the left bar, then click `Deploy from a branch` buttom and select `GitHub Actions`.
 
 ![Deploy from Actions](https://raw.githubusercontent.com/Phenix-G/image-hosting/main/2024-08-28-18-02-09.png)
 
-## Step 4: Configure GitHub Actions Workflow
+2. Now go to your Local hexo blog folder. In your hexo blog folder, create a new directory named `.github/workflows`.
 
-1. In your hexo blog folder, create a new directory named `.github/workflows`.
+3. Inside the `workflows` directory, create a new file named `deploy.yml`.
+   The full path looks like `<your-hexo-project>/.github/workflows/depoly.yml`.
 
-2. Inside the `workflows` directory, create a new file named `deploy.yml`.
-
-3. Open `deploy.yml` and add the following content to set up the GitHub Actions workflow:
+4. Open `deploy.yml` and add the following content to set up the GitHub Actions workflow:
 
 ```yaml
 name: Deploy Hexo Blog
@@ -71,7 +60,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN  }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
       - name: Use Node.js 18
@@ -110,7 +99,7 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-## Step 5: Commit and Push the Workflow File
+## Step 4: Commit and Push the Workflow File
 
 1. Save the `deploy.yml` file.
 2. Commit and push the changes to your GitHub repository:
